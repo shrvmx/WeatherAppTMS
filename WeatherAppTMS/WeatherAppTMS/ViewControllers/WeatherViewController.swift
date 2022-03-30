@@ -582,7 +582,7 @@ extension WeatherViewController: UITableViewDataSource, UITableViewDelegate  {
             }
         case 2:
             if let cell = favoritesTableView.cellForRow(at: indexPath) {
-                NetworkManager.shared.getWeather(from: (cell.textLabel?.text)!) { model in
+                NetworkManager.shared.getWeather(from: (cell.textLabel?.text?.replacingOccurrences(of: " ", with: "%20"))!) { model in
                     self.weatherData = model
                     DispatchQueue.main.async {
                         self.setupWeatherViewFromCity()
